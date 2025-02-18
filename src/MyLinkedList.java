@@ -44,6 +44,39 @@
         }
 
     }
+    @Override
+    public Person remove(int index){
+        if(index<0 || index >=size){
+            return null;
+        }
+        Node nodeToRemove;
+
+        if(index ==0){
+            nodeToRemove = head;
+            head = head.getNext();
+            if(head !=null) {
+                head.setPrev(null);
+            }else{
+                tail = null;
+            }
+        } else if (index == size -1) {
+            nodeToRemove = tail;
+            tail = tail.getPrev();
+            tail.setNext(null);
+        }
+        else{
+            nodeToRemove = head;
+            for (int i = 0; i < index; i++) {
+                nodeToRemove = nodeToRemove.getNext();
+            }
+            Node prevNode = nodeToRemove.getPrev();
+            Node nextNode = nodeToRemove.getNext();
+            prevNode.setNext(nextNode);
+            nextNode.setPrev(prevNode);
+        }
+        size--;
+        return nodeToRemove.getValue();
+    }
 
     private static class Node{
         private Node prev;

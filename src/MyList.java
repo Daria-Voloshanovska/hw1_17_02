@@ -4,4 +4,8 @@ public interface MyList {
 
     Person get(int index);
     void print();
+
+    Person remove(int index);
+
+
 }
